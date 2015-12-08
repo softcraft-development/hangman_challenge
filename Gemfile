@@ -25,6 +25,11 @@ gem "bootstrap-sass"
 gem 'angularjs-rails'
 gem "haml"
 
+# Note: normally Jasmine would be included in the :test group. 
+# However, since the front-end unit tests are a major component of this project,
+# I'm including them in the production group.
+gem "jasmine-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
