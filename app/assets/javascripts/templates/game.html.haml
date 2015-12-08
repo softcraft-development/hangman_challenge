@@ -8,5 +8,5 @@
   %ul.letters
     - ("A".."Z").each do |letter|
       %li.letter
-        %button{:type=>"button", :name=>"letter_#{letter}"} 
+        %button{:type=>"button", :name=>"letter_#{letter}", :value => letter, "ng-click"=>"makeGuess('#{letter}')"} 
           = letter
