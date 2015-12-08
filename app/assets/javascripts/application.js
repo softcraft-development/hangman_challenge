@@ -21,7 +21,7 @@
 Hangman = {};
 Hangman.App = angular.module('hangman', ["templates"]);
 
-Hangman.App.controller("wordController", function($scope){
+Hangman.App.controller("gameController", function($scope){
   $scope.positions = ["F", null, "O", "R", "D"];
 });
 
