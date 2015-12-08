@@ -16,24 +16,10 @@
 //= require bootstrap-sprockets
 //= require angular  
 //= require angular-rails-templates
+//= require namespace
 //= require_tree ./templates
+//= require_tree ./directives  
+//= require_tree ./controllers
 //= require_tree .
 
-Hangman = {};
-Hangman.App = angular.module('hangman', ["templates"]);
-
-Hangman.App.controller("GameController", function($scope, $http){
-  promise = $http.get('games/1.json')
-  promise.success(function(data) {
-    _.extend($scope, data)
-  });
-  promise.error(function(){
-    debugger;
-  });
-});
-
-Hangman.App.directive('position', function() {
-  return {
-    templateUrl: 'position.html'
-  };
-});
+Hangman.App = angular.module('hangman', ["templates", "Directives", "Controllers"]);
