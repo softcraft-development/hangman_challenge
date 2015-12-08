@@ -1,0 +1,12 @@
+#game-board{"ng-controller" => "GameController"}
+  .misses
+    %label Misses:
+    %span.value 
+      {{ misses }}
+  .word
+    %position{"ng-repeat"=>"position in positions track by $index"}
+  %ul.letters
+    - ("A".."Z").each do |letter|
+      %li.letter
+        %button{:type=>"button", :name=>"letter_#{letter}"} 
+          = letter
