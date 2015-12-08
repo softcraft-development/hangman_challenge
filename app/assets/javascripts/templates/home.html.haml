@@ -2,7 +2,7 @@
   %h1 Hangman
   %h2 By Craig Walker
   .games-section
-    %h2 Games:
+    %h2 Open Games:
     %ul.games
-      %li
-        %a{:href=>"#/games/1"} Game 1
+      %li{"ng-repeat"=>"game in openGames"}
+        %a{:href=>"#/games/{{game.id}}"} Game {{game.id}}
