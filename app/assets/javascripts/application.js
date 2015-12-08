@@ -14,10 +14,12 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require angular  
+//= require angular-rails-templates
+//= require_tree ./templates
 //= require_tree .
 
 Hangman = {};
-Hangman.App = angular.module('hangman', []);
+Hangman.App = angular.module('hangman', ["templates"]);
 
 Hangman.App.controller("wordController", function($scope){
   $scope.positions = ["F", null, "O", "R", "D"];
