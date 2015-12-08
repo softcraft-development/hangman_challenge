@@ -22,9 +22,10 @@
 Hangman = {};
 Hangman.App = angular.module('hangman', ["templates"]);
 
-Hangman.App.controller("gameController", function($scope){
-  $scope.positions = ["F", null, "O", "R", "D"];
-  $scope.misses = 2;
+Hangman.App.controller("gameController", function($scope, $http){
+  $http.get('games/1.json').success(function(data) {
+    _.extend($scope, data)
+  });
 });
 
 Hangman.App.directive('position', function() {
