@@ -24,7 +24,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "bootstrap-sass"
 gem 'angularjs-rails'
 gem "haml"
-gem 'angular-rails-templates'
+gem 'angular-rails-templates', '0.1.3'
+gem 'sprockets', '2.12.4'
 
 # Note: normally Jasmine would be included in the :test group. 
 # However, since the front-end unit tests are a major component of this project,
