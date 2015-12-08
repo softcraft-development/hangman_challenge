@@ -1,4 +1,4 @@
-Hangman.Controllers.controller("GameController", function($scope, $http){
+Hangman.Controllers.controller("Game", function($scope, $http){
   promise = $http.get('games/1.json')
   promise.success(function(data) {
     _.extend($scope, data)

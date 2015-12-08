@@ -1,5 +1,5 @@
 describe("controllers", function(){
-  describe("GameController", function(){
+  describe("Game", function(){
     var $scope, $httpBackend, controller;
     var response;
     
@@ -15,7 +15,7 @@ describe("controllers", function(){
       $httpBackend.expectGET('games/1.json').respond(response);
 
       $scope = $rootScope.$new();
-      controller = $controller('GameController', {$scope: $scope});
+      controller = $controller('Game', {$scope: $scope});
       $httpBackend.flush();
     }));
     
