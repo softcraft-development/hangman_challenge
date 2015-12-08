@@ -23,6 +23,7 @@ Hangman.App = angular.module('hangman', ["templates"]);
 
 Hangman.App.controller("gameController", function($scope){
   $scope.positions = ["F", null, "O", "R", "D"];
+  $scope.misses = 2;
 });
 
 Hangman.App.directive('position', function() {

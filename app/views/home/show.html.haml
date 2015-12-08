@@ -1,7 +1,8 @@
 #game-board{"ng-controller" => "gameController"}
   .misses
     %label Misses:
-    %span.value 0
+    %span.value 
+      {{ misses }}
   .word
     %position{"ng-repeat"=>"position in positions track by $index"}
   %ul.letters
