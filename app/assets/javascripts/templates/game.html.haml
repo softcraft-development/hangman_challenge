@@ -6,7 +6,7 @@
   .word
     %position{"ng-repeat"=>"position in positions track by $index"}
   %ul.letters
-    - ("A".."Z").each do |letter|
+    - Guess::RANGE.each do |letter|
       %li.letter
         %button{:type=>"button", :name=>"letter_#{letter}", :value => letter, "ng-click"=>"makeGuess('#{letter}')"} 
           = letter
