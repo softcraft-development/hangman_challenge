@@ -26,6 +26,7 @@ gem 'angularjs-rails'
 gem "haml"
 gem 'angular-rails-templates', '0.1.3'
 gem 'sprockets', '2.12.4'
+gem 'underscore-rails'
 
 # Note: normally Jasmine would be included in the :test group. 
 # However, since the front-end unit tests are a major component of this project,
