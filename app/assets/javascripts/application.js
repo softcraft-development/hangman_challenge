@@ -24,3 +24,9 @@ Hangman.App = angular.module('hangman', ["templates"]);
 Hangman.App.controller("wordController", function($scope){
   $scope.positions = ["F", null, "O", "R", "D"];
 });
+
+Hangman.App.directive('position', function() {
+  return {
+    templateUrl: 'position.html'
+  };
+});
