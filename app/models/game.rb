@@ -9,12 +9,15 @@ class Game < ActiveRecord::Base
     correct_letters = []
     hash[:positions] = self.word.name.each_char.map do |letter|
       letter = letter.upcase
-      correct_letters << letter
-      
-      if hash[:guessed_letters].include?(letter)
+      if letter == " "
         letter
       else
-        nil
+        correct_letters << letter
+        if hash[:guessed_letters].include?(letter)
+          letter
+        else
+          nil
+        end
       end
     end
     
