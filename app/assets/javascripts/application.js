@@ -18,3 +18,7 @@
 
 Hangman = {};
 Hangman.App = angular.module('hangman', []);
+
+Hangman.App.controller("wordController", function($scope){
+  $scope.positions = new Array(6);
+});
