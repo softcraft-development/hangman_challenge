@@ -33,5 +33,33 @@ describe("controllers", function(){
     it("sets the guesses", function(){
       expect($scope.guesses).toEqual(gameState.guesses)
     });
+    
+    describe("when a guess is made", function(){
+      var letter, newGameState;
+      
+      beforeEach(function(){
+        var letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        letter = letters.charAt(Math.floor(Math.random() * letters.length))
+        
+        newGameState = {
+          id: gameState.id,
+          positions: ["X", null, " ", "Y"],
+          misses: Math.floor(Math.random() * 100),
+          guesses: ["S", "T", "L", "R"]
+        };
+        
+        $httpBackend.expectPUT("games/" + gameState.id + "/guesses/" + letter + ".json").respond({
+          game: newGameState
+        });
+        $scope.makeGuess(letter);
+        $httpBackend.flush();
+      });
+    
+      it("sets the new game state", function(){
+        _.each(newGameState, function(value, key){
+          expect($scope[key]).toEqual(value)
+        });
+      });
+    });
   });
 });
