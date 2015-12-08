@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   root 'home#show'
   
-  resources :games, :only => [:show, :index]
+  resources :games, :only => [:show, :index] do
+    resources :guesses, :only => [:update]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
