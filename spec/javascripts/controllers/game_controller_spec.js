@@ -1,4 +1,4 @@
 describe("controllers", function(){
-  describe("gameController", function(){
+  describe("GameController", function(){
   });
 });

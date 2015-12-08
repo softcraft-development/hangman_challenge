@@ -22,7 +22,7 @@
 Hangman = {};
 Hangman.App = angular.module('hangman', ["templates"]);
 
-Hangman.App.controller("gameController", function($scope, $http){
+Hangman.App.controller("GameController", function($scope, $http){
   $http.get('games/1.json').success(function(data) {
     _.extend($scope, data)
   });
