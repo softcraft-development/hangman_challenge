@@ -14,3 +14,19 @@
  *= require_tree .
  *= require_self
  */
+
+#game-board
+  .word
+    .position
+      display: inline-block
+      width: 1em
+      height: 1em
+      margin:
+        left: 0.5em
+        right: 0.5em
+      &.blank
+        border-bottom: 3px solid black
+  .letters
+    list-style-type: none
+    .letter
+      display: inline-block

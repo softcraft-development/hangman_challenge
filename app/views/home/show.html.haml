@@ -1,0 +1,18 @@
+#game-board
+  .misses
+    %label Misses:
+    %span.value 0
+  .word
+    %span.position.blank
+    %span.position.blank
+    %span.position.blank
+    %span.position.blank
+    %span.position.blank
+    %span.position.blank
+    %span.position.blank
+    %span.position.blank
+  %ul.letters
+    - ("A".."Z").each do |letter|
+      %li.letter
+        %button{:type=>"button", :name=>"letter_#{letter}"} 
+          = letter
