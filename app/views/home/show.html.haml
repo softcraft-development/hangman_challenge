@@ -3,7 +3,8 @@
     %label Misses:
     %span.value 0
   .word{"ng-controller" => "wordController"}
-    %span.position.blank{"ng-repeat"=>"position in positions track by $index"}
+    %span.position{"ng-repeat"=>"position in positions track by $index"}
+      {{ position }}
   %ul.letters
     - ("A".."Z").each do |letter|
       %li.letter
