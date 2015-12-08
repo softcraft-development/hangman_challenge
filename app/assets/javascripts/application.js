@@ -15,3 +15,6 @@
 //= require bootstrap-sprockets
 //= require angular  
 //= require_tree .
+
+Hangman = {};
+Hangman.App = angular.module('hangman', []);
