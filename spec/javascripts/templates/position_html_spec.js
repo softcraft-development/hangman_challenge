@@ -43,5 +43,25 @@ describe("templates", function(){
         expect(view).not.toHaveClass("blank");
       });
     });
+    
+    describe("when the position is a space", function(){
+      beforeEach(function(){
+        $scope.position = " ";
+        $compile(view)($scope);
+        $rootScope.$digest();
+      });
+
+      it("sets the contents to blank", function(){
+        expect(view).toBeBlank()
+      });
+      
+      it("does not add the blank css class", function(){
+        expect(view).not.toHaveClass("blank");
+      });
+      
+      it("does not add the space css class", function(){
+        expect(view).toHaveClass("space");
+      });
+    });
   });
 });
