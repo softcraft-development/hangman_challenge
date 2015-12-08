@@ -5,17 +5,20 @@ describe("controllers", function(){
     
     beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
       response = {
-        id: 1,
+        id: Math.floor(Math.random() * 100),
         positions: ["A", null, " ", "C"],
         misses: 2,
         guesses: ["A", "C", "D", "E"]
       };
       
       $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('games/1.json').respond(response);
+      $httpBackend.expectGET("games/" + response.id + ".json").respond(response);
 
       $scope = $rootScope.$new();
-      controller = $controller('Game', {$scope: $scope});
+      $routeParams = {
+        gameId: response.id
+      };
+      controller = $controller('Game', {$scope: $scope, $routeParams: $routeParams});
       $httpBackend.flush();
     }));
     
