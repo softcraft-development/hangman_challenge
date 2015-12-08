@@ -16,10 +16,17 @@
 //= require bootstrap-sprockets
 //= require angular  
 //= require angular-rails-templates
+//= require angular-route  
 //= require namespace
 //= require_tree ./templates
 //= require_tree ./directives  
 //= require_tree ./controllers
 //= require_tree .
 
-Hangman.App = angular.module('hangman', ["templates", "Directives", "Controllers"]);
+Hangman.App = angular.module('hangman', ["ngRoute", "templates", "Directives", "Controllers"]);
+Hangman.App.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.otherwise({
+      templateUrl: 'game.html',
+      controller: 'GameController'
+    });
+}]);
