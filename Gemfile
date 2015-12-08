@@ -31,6 +31,7 @@ gem 'sprockets', '2.12.4'
 # However, since the front-end unit tests are a major component of this project,
 # I'm including them in the production group.
 gem "jasmine-rails"
+gem "jasmine-jquery-rails"
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
