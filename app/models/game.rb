@@ -2,6 +2,7 @@ class Game < ActiveRecord::Base
   belongs_to :word
   has_many :guesses
   validates :word, :presence => true
+  validates :status, :inclusion => { :in => [nil, "win", "loss"] } 
   
   def state
     hash = {}
