@@ -1,37 +1,37 @@
 describe("controllers", function(){
   describe("Game", function(){
     var $scope, $httpBackend, controller;
-    var response;
+    var gameState;
     
     beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
-      response = {
+      gameState = {
         id: Math.floor(Math.random() * 100),
         positions: ["A", null, " ", "C"],
-        misses: 2,
+        misses: Math.floor(Math.random() * 100),
         guesses: ["A", "C", "D", "E"]
       };
       
       $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET("games/" + response.id + ".json").respond(response);
+      $httpBackend.expectGET("games/" + gameState.id + ".json").respond(gameState);
 
       $scope = $rootScope.$new();
       $routeParams = {
-        gameId: response.id
+        gameId: gameState.id
       };
       controller = $controller('Game', {$scope: $scope, $routeParams: $routeParams});
       $httpBackend.flush();
     }));
     
     it("sets the positions", function(){
-      expect($scope.positions).toEqual(response.positions)
+      expect($scope.positions).toEqual(gameState.positions)
     });
 
     it("sets the misses", function(){
-      expect($scope.misses).toEqual(response.misses)
+      expect($scope.misses).toEqual(gameState.misses)
     });
 
     it("sets the guesses", function(){
-      expect($scope.guesses).toEqual(response.guesses)
+      expect($scope.guesses).toEqual(gameState.guesses)
     });
   });
 });
