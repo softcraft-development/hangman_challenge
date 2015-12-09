@@ -82,8 +82,6 @@ Hangman.Frames.Body.prototype.draw = function(context) {
     var topY = y - longRadius;
     var bottomY = y + longRadius;
     
-    
-    
     context.beginPath();
     context.moveTo(x, topY);
     context.bezierCurveTo(leftX, topY, leftX, bottomY, x, bottomY);
@@ -123,7 +121,9 @@ Hangman.Frames.Limb.prototype.draw = function(context) {
 };
 
 Hangman.Directives.directive('hangmanDisplay', function() {
-  this.frames = [
+  var _this = this;
+  
+  var frames = [
     new Hangman.Frames.Gallows(),
     new Hangman.Frames.Head(),
     new Hangman.Frames.Body(),
@@ -132,23 +132,34 @@ Hangman.Directives.directive('hangmanDisplay', function() {
     new Hangman.Frames.Limb(140, 252, 10, 90, 0.33, true),
     new Hangman.Frames.Limb(162, 252, 10, 90, 0.33, false),
   ];
+  var lastFrameDrawn = -1;
+  
+  function update(canvas, targetFrame){
+    var context = canvas.getContext("2d");
+    var targetFrame = Math.min(targetFrame, frames.length - 1);
+  
+    if (lastFrameDrawn > targetFrame) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      lastFrameDrawn = -1;
+    }
+  
+    context.shadowColor = Hangman.Frames.ShadowColor;
+    context.shadowBlur = 12;
+    context.shadowOffsetX = 2;
+    context.shadowOffsetY = 4;
+
+    for(var index = lastFrameDrawn + 1; index <= targetFrame; index++) {
+      context.save();
+      frames[index].draw(context);
+      context.restore();
+      lastFrameDrawn = index;
+    }
+  };
   
   return {
-    templateUrl: 'position.html',
     link: function(scope, element, attrs) {
-      var context = element[0].getContext("2d");
+      var canvas = element[0];
       
-      context.shadowColor = Hangman.Frames.ShadowColor;
-      context.shadowBlur = 12;
-      context.shadowOffsetX = 2;
-      context.shadowOffsetY = 4;
-
-      var drawTo = Math.min(10, frames.length - 1);
-      for(var i = 0; i <= drawTo; i++) {
-        context.save();
-        frames[i].draw(context);
-        context.restore();
-      }
     }
   };
 });
