@@ -1,3 +1,76 @@
+describe("directives", function(){
+  var originalFrames;
+  beforeEach(function(){
+    originalFrames = Hangman.Display.frames;
+  });
+  
+  describe("hangmanDisplay", function(){
+    var $rootScope, $scope, $compile, view, render;
+
+    beforeEach(inject(function(_$compile_, _$rootScope_) {  
+      $compile = _$compile_;
+      $rootScope = _$rootScope_;
+      $scope = $rootScope.$new();
+      view = angular.element("<canvas hangman-display height='400' width='300'></canvas>");
+    }));
+    
+    render = function(){
+      $compile(view)($scope);
+      $rootScope.$digest();
+    };
+    
+    describe("when update is fired for 2 frames", function(){
+      beforeEach(function(){
+        Hangman.Display.frames = [
+          jasmine.createSpyObj(["draw"]),
+          jasmine.createSpyObj(["draw"]),
+          jasmine.createSpyObj(["draw"])
+        ]
+        render();
+        
+        $scope.$emit("update", 1);
+      });
+      
+      it("draws the first frame", function(){
+        expect(Hangman.Display.frames[0].draw).toHaveBeenCalledWith(jasmine.any(CanvasRenderingContext2D));
+      });
+
+      it("draws the second frame", function(){
+        expect(Hangman.Display.frames[1].draw).toHaveBeenCalledWith(jasmine.any(CanvasRenderingContext2D));
+      });
+
+      it("does not draw the third frame", function(){
+        expect(Hangman.Display.frames[2].draw).not.toHaveBeenCalled();
+      });
+      
+      describe("and then fired for 3 frames", function(){
+        beforeEach(function(){
+          _.each(Hangman.Display.frames, function(frame){
+            frame.draw.calls.reset();
+          });
+          
+          $scope.$emit("update", 2);
+        });
+      
+        it("does not draw the first frame", function(){
+         expect(Hangman.Display.frames[0].draw).not.toHaveBeenCalled();
+        });
+
+        it("does not draw the first frame", function(){
+          expect(Hangman.Display.frames[1].draw).not.toHaveBeenCalled();
+        });
+
+        it("draws the second frame", function(){
+          expect(Hangman.Display.frames[2].draw).toHaveBeenCalledWith(jasmine.any(CanvasRenderingContext2D));
+        });
+      });
+    });
+  });
+  
+  afterEach(function(){
+    Hangman.Display.frames = frames;
+  });
+});
 
 describe("frames", function() {
   
