@@ -121,23 +121,24 @@ Hangman.Display.Frames.Limb.prototype.draw = function(context) {
   });
 };
 
+Hangman.Display.frames = [
+  new Hangman.Display.Frames.Gallows(),
+  new Hangman.Display.Frames.Head(),
+  new Hangman.Display.Frames.Body(),
+  new Hangman.Display.Frames.Limb(144, 168, 24, 60, 0, true),
+  new Hangman.Display.Frames.Limb(156, 162, 24, 60, 0, false),
+  new Hangman.Display.Frames.Limb(140, 252, 10, 90, 0.33, true),
+  new Hangman.Display.Frames.Limb(162, 252, 10, 90, 0.33, false),
+];
+
 Hangman.Directives.directive('hangmanDisplay', function() {
   var _this = this;
   
-  var frames = [
-    new Hangman.Display.Frames.Gallows(),
-    new Hangman.Display.Frames.Head(),
-    new Hangman.Display.Frames.Body(),
-    new Hangman.Display.Frames.Limb(144, 168, 24, 60, 0, true),
-    new Hangman.Display.Frames.Limb(156, 162, 24, 60, 0, false),
-    new Hangman.Display.Frames.Limb(140, 252, 10, 90, 0.33, true),
-    new Hangman.Display.Frames.Limb(162, 252, 10, 90, 0.33, false),
-  ];
   var lastFrameDrawn = -1;
   
   function update(canvas, targetFrame){
     var context = canvas.getContext("2d");
-    var targetFrame = Math.min(targetFrame, frames.length - 1);
+    var targetFrame = Math.min(targetFrame, Hangman.Display.frames.length - 1);
   
     if (lastFrameDrawn > targetFrame) {
       context.clearRect(0, 0, canvas.width, canvas.height);
@@ -151,7 +152,7 @@ Hangman.Directives.directive('hangmanDisplay', function() {
 
     for(var index = lastFrameDrawn + 1; index <= targetFrame; index++) {
       context.save();
-      frames[index].draw(context);
+      Hangman.Display.frames[index].draw(context);
       context.restore();
       lastFrameDrawn = index;
     }
