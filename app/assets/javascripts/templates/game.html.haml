@@ -1,8 +1,6 @@
 #game-board
   .misses
-    %label Misses:
-    %span.value 
-      {{ misses }}
+    %canvas#hangman-display{:width=>"300", :height=>"400", "hangman-display" => ""}
   .word
     %position{"ng-repeat"=>"position in positions track by $index"}
   %ul.letters
