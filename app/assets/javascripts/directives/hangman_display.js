@@ -132,7 +132,6 @@ Hangman.Display.frames = [
 ];
 
 Hangman.Directives.directive('hangmanDisplay', function() {
-  var _this = this;
   
   var lastFrameDrawn = -1;
   
