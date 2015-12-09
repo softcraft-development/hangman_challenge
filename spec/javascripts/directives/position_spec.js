@@ -1,22 +1,26 @@
 // inspired by http://thecache.trov.com/unit-testing-angular-views-to-avoid-the-integration-test-scam/
 
-describe("templates", function(){
-  describe("position.html", function(){
-    var template, $rootScope, $scope, $compile, view;
+describe("directives", function(){
+  describe("position", function(){
+    var $rootScope, $scope, $compile, view;
 
-    beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {  
-      template = $templateCache.get("position.html");
+    beforeEach(inject(function(_$compile_, _$rootScope_) {  
       $compile = _$compile_;
       $rootScope = _$rootScope_;
       $scope = $rootScope.$new();
-      view = angular.element(template);
+      container = angular.element("<position />");
     }));
+    
+    render = function(){
+      $compile(container)($scope);
+      $rootScope.$digest();
+      view = container.find("span");
+    };
     
     describe("when the position is null", function(){
       beforeEach(function(){
         $scope.position = null;
-        $compile(view)($scope);
-        $rootScope.$digest();
+        render();
       });
 
       it("sets the contents to empty", function(){
@@ -31,8 +35,7 @@ describe("templates", function(){
     describe("when the position is non null", function(){
       beforeEach(function(){
         $scope.position = "A Test Value";
-        $compile(view)($scope);
-        $rootScope.$digest();
+        render();
       });
 
       it("sets the contents to the position value", function(){
@@ -47,8 +50,7 @@ describe("templates", function(){
     describe("when the position is a space", function(){
       beforeEach(function(){
         $scope.position = " ";
-        $compile(view)($scope);
-        $rootScope.$digest();
+        render();
       });
 
       it("sets the contents to blank", function(){
