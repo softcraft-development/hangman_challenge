@@ -2,7 +2,7 @@
 
 describe("directives", function(){
   describe("position", function(){
-    var $rootScope, $scope, $compile, view;
+    var $rootScope, $scope, $compile, view, container, render;
 
     beforeEach(inject(function(_$compile_, _$rootScope_) {  
       $compile = _$compile_;
