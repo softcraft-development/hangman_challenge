@@ -160,6 +160,9 @@ Hangman.Directives.directive('hangmanDisplay', function() {
     link: function(scope, element, attrs) {
       var canvas = element[0];
       
+      scope.$on("update", function(event, frame){
+        update(canvas, frame);
+      });
     }
   };
 });
