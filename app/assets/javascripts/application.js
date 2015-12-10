@@ -25,7 +25,7 @@
 
 Hangman.App = angular.module('hangman', ["ngRoute", "templates", "Directives", "Controllers"]);
 Hangman.App.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/games/:gameId', {
+  $routeProvider.when('/game/:gameId', {
     templateUrl: 'game.html',
     controller: 'Game'
   }).

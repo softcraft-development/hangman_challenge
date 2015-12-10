@@ -21,7 +21,7 @@ describe("templates", function(){
 
     it("adds a link for each open game", function(){
       _.each($scope.openGames, function(game){
-        expect(view).toContainElement("a[href='#/games/" + game.id + "']")
+        expect(view).toContainElement("a[href='#/game/" + game.id + "']")
       });
     });
   });
