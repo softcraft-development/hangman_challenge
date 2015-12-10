@@ -1,11 +1,16 @@
-Hangman.Controllers.controller("Game", function($scope, $http, $routeParams){
-  promise = $http.get("games/" + $routeParams.gameId + ".json")
-  promise.success(function(data) {
-    _.extend($scope, data);
-  });
-  promise.error(function(){
-    debugger;
-  });
+Hangman.Controllers.controller("Game", function($scope, $http, $routeParams, currentGame){
+  if (currentGame.exists()) {
+    _.extend($scope, currentGame.getGameData());
+  }
+  else {
+    promise = $http.get("games/" + $routeParams.gameId + ".json")
+    promise.success(function(data) {
+      _.extend($scope, data);
+    });
+    promise.error(function(){
+      debugger;
+    });
+  }
   
   $scope.$watch("misses", function(newValue){
     // Misses happen to match up with frames, so we can pass newValue directly, 
