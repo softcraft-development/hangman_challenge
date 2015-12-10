@@ -110,7 +110,7 @@ describe("frames", function() {
   // While worth investigating in a critical application, it's more than
   // I want to invest for a game of Hangman.
   // It's sufficient to check that the frames draw without generating exceptions,
-  // and then manually & visually inspec the results.
+  // and then manually & visually inspect the results.
   function testDrawing(frame){
     var canvas = $("<canvas></canvas>")[0]
     var context = canvas.getContext("2d");
