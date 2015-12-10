@@ -50,7 +50,7 @@ describe("services", function(){
         });
 
         it("sets the game data to null", function(){
-          expect(currentGame.getGameData()).toBeNull;
+          expect(currentGame.getGameData()).toBeNull();
         });
       });
     });
