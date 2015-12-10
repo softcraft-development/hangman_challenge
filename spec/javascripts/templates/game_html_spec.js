@@ -1,6 +1,6 @@
 describe("templates", function(){
   describe("game.html", function(){
-    var template, $rootScope, $scope, $compile, view;
+    var template, $rootScope, $scope, $compile, view, newGame;
 
     var render = function() {
       $compile(view)($scope);
@@ -16,6 +16,8 @@ describe("templates", function(){
       $compile = _$compile_;
       $rootScope = _$rootScope_;
       $scope = $rootScope.$new();
+      newGame = jasmine.createSpy("newGame");
+      $scope.$root.newGame = newGame;
       view = angular.element(template);
     }));
     
@@ -24,6 +26,17 @@ describe("templates", function(){
       $scope.id = gameId;
       render()
       expect(view.find("h1")).toContainText("Game #" + gameId);
+    });
+    
+    describe("when the new game link in the game section is clicked", function(){
+      beforeEach(function(){
+        render();
+        view.find(".controls a.new-game").click();
+      });
+      
+      it("triggers a new game", function(){
+        expect(newGame).toHaveBeenCalled();
+      });
     });
     
     describe("when the position is null", function(){
