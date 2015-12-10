@@ -19,12 +19,14 @@ Hangman.Controllers.controller("Game", function($scope, $http, $routeParams, cur
   });
   
   $scope.makeGuess = function(letter){
-    promise = $http.put("games/" + $routeParams.gameId + "/guesses/" + letter.toUpperCase() + ".json")
-    promise.success(function(data){
-      _.extend($scope, data.game)
-    });
-    promise.error(function(){
-      debugger;
-    });
+    if ($scope.status == null) {
+      promise = $http.put("games/" + $routeParams.gameId + "/guesses/" + letter.toUpperCase() + ".json")
+      promise.success(function(data){
+        _.extend($scope, data.game)
+      });
+      promise.error(function(){
+        debugger;
+      });
+    }
   };
 });
