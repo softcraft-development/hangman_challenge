@@ -3,7 +3,7 @@
     .overlay
       %h1 Hangman
       %h2 By Craig Walker
-      %a.btn.btn-info{:href=>"/#/new"} Start a New Game
+      %button.btn.btn-info{"ng-click"=>"newGame()"} Start a New Game
   .games-section
     .container-fluid
       .row
@@ -12,7 +12,7 @@
           %p
             Hangman: The classic life-and-death game of letter guessing. But really an exercise in <a href="https://github.com/softcraft-development/hangman_challenge">software development</a>.
           %p
-            Start a <a href="/#/new">new game</a>, or choose from one of these open games:
+            Start a <a href="#" ng-click="newGame()">new game</a>, or choose from one of these open games:
           %ul.games
             %li{"ng-repeat"=>"game in openGames"}
-              %a{:href=>"#/games/{{game.id}}"} Game {{game.id}}
+              %a{:href=>"#/game/{{game.id}}"} Game {{game.id}}
