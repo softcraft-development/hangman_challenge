@@ -3,6 +3,8 @@
     Game \#{{ id }}
   %h2
     Category: Countries of the World
+  .game-status-container
+    .game-status{"game-status" => ""}
   .misses
     %canvas#hangman-display{:width=>"300", :height=>"400", "hangman-display" => ""}
   .word-section
