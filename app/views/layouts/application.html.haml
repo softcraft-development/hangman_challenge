@@ -1,9 +1,36 @@
 !!!
 %html{"ng-app" => "hangman"}
   %head
-    %title HangmanChallenge
+    %title Hangman by Craig Walker
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    %nav#site-navigation.navbar.navbar-inverse.navbar-fixed-top
+      .container-fluid
+        .navbar-header
+          %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{:href => "/"} Hangman
+        #navbar.collapse.navbar-collapse
+          %ul.nav.navbar-nav.pull-right
+            %li
+              %a{:href=>"/"} Home
+            %li
+              %a{:href=>"/#/new"} New Game
+            %li
+              %a{:href=>"https://github.com/softcraft-development/hangman_challenge"} Source
+    %section#main-content
+      = yield
+    %footer#site-footer.footer
+      .container-fluid
+        .row
+          .col-md-6.col-md-offset-3
+            %p
+              Developed by <a href="https://careers.stackoverflow.com/softcraft">Craig Walker</a>, <a href="http://softcraft.ca">SoftCraft Development</a>. 
+              Cover photo by <a href="https://www.flickr.com/photos/matthigh/2982691629">mlhradio</a>.
+          
