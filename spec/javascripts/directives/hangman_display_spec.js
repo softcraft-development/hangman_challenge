@@ -20,12 +20,19 @@ describe("directives", function(){
     };
     
     describe("when update is fired for 2 frames", function(){
+      var resetCalls = function(){
+        _.each(Hangman.Display.frames, function(frame){
+          frame.draw.calls.reset();
+        });
+      };
+      
       beforeEach(function(){
         Hangman.Display.frames = [
           jasmine.createSpyObj(["draw"]),
           jasmine.createSpyObj(["draw"]),
           jasmine.createSpyObj(["draw"])
         ]
+        
         render();
         
         $scope.$emit("update", 1);
@@ -45,9 +52,7 @@ describe("directives", function(){
       
       describe("and then fired for 3 frames", function(){
         beforeEach(function(){
-          _.each(Hangman.Display.frames, function(frame){
-            frame.draw.calls.reset();
-          });
+          resetCalls();
           
           $scope.$emit("update", 2);
         });
@@ -62,6 +67,31 @@ describe("directives", function(){
 
         it("draws the second frame", function(){
           expect(Hangman.Display.frames[2].draw).toHaveBeenCalledWith(jasmine.any(CanvasRenderingContext2D));
+        });
+      });
+      
+      describe("and the directive is rerendered", function(){
+        beforeEach(function(){
+          resetCalls();
+          render();
+        });
+        
+        describe("and the update is fired for 3 frames", function(){
+          beforeEach(function(){
+            $scope.$emit("update", 2);
+          });
+          
+          it("draws the first frame", function(){
+            expect(Hangman.Display.frames[0].draw).toHaveBeenCalledWith(jasmine.any(CanvasRenderingContext2D));
+          });
+
+          it("draws the second frame", function(){
+            expect(Hangman.Display.frames[1].draw).toHaveBeenCalledWith(jasmine.any(CanvasRenderingContext2D));
+          });
+
+          it("draws the third frame", function(){
+            expect(Hangman.Display.frames[2].draw).toHaveBeenCalledWith(jasmine.any(CanvasRenderingContext2D));
+          });
         });
       });
     });

@@ -132,10 +132,7 @@ Hangman.Display.frames = [
 ];
 
 Hangman.Directives.directive('hangmanDisplay', function() {
-  
-  var lastFrameDrawn = -1;
-  
-  function update(canvas, targetFrame){
+  function update(canvas, targetFrame, lastFrameDrawn){
     var context = canvas.getContext("2d");
     var targetFrame = Math.min(targetFrame, Hangman.Display.frames.length - 1);
   
@@ -155,14 +152,16 @@ Hangman.Directives.directive('hangmanDisplay', function() {
       context.restore();
       lastFrameDrawn = index;
     }
+    return lastFrameDrawn;
   };
   
   return {
     link: function(scope, element, attrs) {
       var canvas = element[0];
-      
+      var lastFrameDrawn = -1;
+  
       scope.$on("update", function(event, frame){
-        update(canvas, frame);
+        lastFrameDrawn = update(canvas, frame, lastFrameDrawn);
       });
     }
   };
