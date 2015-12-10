@@ -1,4 +1,11 @@
 class GamesController < ApplicationController
+  skip_before_filter :verify_authenticity_token, only: [:create]
+  
+  def create
+    @game = Game.create!(:word => Word.all.sample)
+    render :status => :created, :location => game_path(@game)
+  end
+  
   def index
     @open_games = Game.where(:status => nil)
   end

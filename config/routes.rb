@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   root 'home#show'
   
-  resources :games, :only => [:show, :index] do
+  resources :games, :only => [:show, :index, :create] do
     resources :guesses, :only => [:update]
   end
 
