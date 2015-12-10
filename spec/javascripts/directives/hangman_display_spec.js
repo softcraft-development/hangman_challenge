@@ -7,12 +7,12 @@ describe("directives", function(){
   describe("hangmanDisplay", function(){
     var $rootScope, $scope, $compile, view, render;
 
-    beforeEach(inject(function(_$compile_, _$rootScope_) {  
+    beforeEach(inject(["$compile", "$rootScope", function(_$compile_, _$rootScope_) {  
       $compile = _$compile_;
       $rootScope = _$rootScope_;
       $scope = $rootScope.$new();
       view = angular.element("<canvas hangman-display height='400' width='300'></canvas>");
-    }));
+    }]));
     
     render = function(){
       $compile(view)($scope);

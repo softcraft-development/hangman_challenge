@@ -11,7 +11,7 @@ describe("templates", function(){
       return view.find(".word .position").first();
     };
     
-    beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {  
+    beforeEach(inject(["$templateCache", "$compile", "$rootScope", function($templateCache, _$compile_, _$rootScope_) {  
       template = $templateCache.get("game.html");
       $compile = _$compile_;
       $rootScope = _$rootScope_;
@@ -19,7 +19,7 @@ describe("templates", function(){
       newGame = jasmine.createSpy("newGame");
       $scope.$root.newGame = newGame;
       view = angular.element(template);
-    }));
+    }]));
     
     it("displays the game id", function(){
       gameId = "An arbitrary value";

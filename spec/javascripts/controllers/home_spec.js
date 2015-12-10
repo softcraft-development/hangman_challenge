@@ -2,7 +2,7 @@ describe("controllers", function(){
   describe("Home", function(){
     var $scope, $httpBackend, controller, gamesList, currentGame, $rootScope, $window;
     
-    beforeEach(inject(function(_$httpBackend_, _$rootScope_, $controller, _currentGame_, _$window_) {
+    beforeEach(inject(["$httpBackend", "$rootScope", "$controller", "currentGame", "$window", function(_$httpBackend_, _$rootScope_, $controller, _currentGame_, _$window_) {
       currentGame = _currentGame_;
       spyOn(currentGame, "reset");
       
@@ -19,7 +19,7 @@ describe("controllers", function(){
       $scope = $rootScope.$new();
       controller = $controller('Home', {$scope: $scope});
       $httpBackend.flush();
-    }));
+    }]));
     
     it("sets the open games", function(){
       expect($scope.openGames).toEqual(gamesList)

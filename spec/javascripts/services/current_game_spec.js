@@ -1,9 +1,9 @@
 describe("services", function(){
   describe("currentGame", function(){
     var currentGame;
-    beforeEach(inject(function($injector) {
+    beforeEach(inject(["$injector", function($injector) {
       currentGame = $injector.get('currentGame');
-    }));
+    }]));
     
     describe("setGameData", function(){
       var value;

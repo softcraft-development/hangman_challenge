@@ -1,8 +1,8 @@
 describe("application", function(){
   var $route;
-  beforeEach(inject(function(_$route_) {
+  beforeEach(inject(["$route", function(_$route_) {
     $route = _$route_;
-  }));
+  }]));
 
   it('should map /game/:gameId to games', function() {
     expect($route.routes["/game/:gameId"].controller).toBe('Game');

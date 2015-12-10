@@ -7,9 +7,9 @@ beforeEach(module('hangman'));
 http://stackoverflow.com/a/20886146/3488
 beforeEach(function(){
   $window = {location: { replace: jasmine.createSpy()} };
-  module(function($provide) {
+  module(["$provide", function($provide) {
     $provide.value('$window', $window);
-  });
+  }]);
 });
 
 beforeEach(function() {

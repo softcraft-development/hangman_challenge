@@ -6,7 +6,7 @@ describe("templates", function(){
       $rootScope.$digest();
     }
 
-    beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {  
+    beforeEach(inject(["$templateCache", "$compile", "$rootScope", function($templateCache, _$compile_, _$rootScope_) {  
       template = $templateCache.get("home.html");
       $compile = _$compile_;
       $rootScope = _$rootScope_;
@@ -14,7 +14,7 @@ describe("templates", function(){
       view = angular.element(template);
       newGame = jasmine.createSpy("newGame");
       $scope.$root.newGame = newGame;
-    }));
+    }]));
     
     beforeEach(function(){
       $scope.openGames = [

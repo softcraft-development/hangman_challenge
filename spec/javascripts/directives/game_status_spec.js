@@ -3,12 +3,12 @@ describe("directives", function(){
     var $rootScope, $scope, $compile, view, render;
     
 
-    beforeEach(inject(function(_$compile_, _$rootScope_) {  
+    beforeEach(inject(["$compile", "$rootScope", function(_$compile_, _$rootScope_) {  
       $compile = _$compile_;
       $rootScope = _$rootScope_;
       $scope = $rootScope.$new();
       view = angular.element("<div game-status></div>");
-    }));
+    }]));
     
     render = function(){
       setFixtures(sandbox().append(view));

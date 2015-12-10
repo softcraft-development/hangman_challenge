@@ -44,7 +44,7 @@ describe("controllers", function(){
       });
     }
     
-    beforeEach(inject(function(_$httpBackend_, _$rootScope_, _$controller_, _currentGame_, _$http_) {
+    beforeEach(inject(["$httpBackend", "$rootScope", "$controller", "currentGame", "$http", function(_$httpBackend_, _$rootScope_, _$controller_, _currentGame_, _$http_) {
       gameState = {
         id: Math.floor(Math.random() * 100),
         positions: ["A", null, " ", "C"],
@@ -58,7 +58,7 @@ describe("controllers", function(){
       $http = _$http_;
       $rootScope = _$rootScope_;
       $controller = _$controller_;
-    }));
+    }]));
     
     describe("when there is a current game", function(){
       beforeEach(function(){
@@ -124,12 +124,12 @@ describe("controllers", function(){
     });
     
     function testLockedGame(status) {
-      beforeEach(inject(function(_$http_){
+      beforeEach(inject(["$http", function(_$http_){
         spyOn($http, "put").and.callThrough();
         gameState.status = status;
         currentGame.setGameData(gameState);
         activate();
-      }));
+      }]));
       
       describe("and a guess is made", function(){
         beforeEach(function(){
