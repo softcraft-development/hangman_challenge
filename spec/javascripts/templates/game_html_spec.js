@@ -84,13 +84,13 @@ describe("templates", function(){
       
       it("assigns the guessed css class to the button for each guess", function(){
         _.each($scope.guesses, function(letter) {
-          var button = view.find(".letters .letter button[value='" + letter + "']");
+          var button = view.find(".letters button[value='" + letter + "']");
           expect(button).toHaveClass("guessed");
         });
       });
       
       it("does not assign the guessed css class to the button for any ungessed letter", function(){
-        _.each(view.find(".letters .letter button"), function(button){
+        _.each(view.find(".letters button"), function(button){
           button = $(button)
           letter = button.attr("value")
           if ($scope.guesses.indexOf(letter) < 0 ){
@@ -108,7 +108,7 @@ describe("templates", function(){
         
         makeGuess = jasmine.createSpy("makeGuess")
         $scope.makeGuess = makeGuess
-        buttons = view.find(".letters .letter button")
+        buttons = view.find(".letters button")
         button = $(_.sample(buttons))
         letter = button.attr("value")
         button.click();
