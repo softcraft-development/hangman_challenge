@@ -4,6 +4,13 @@
 // https://code.angularjs.org/1.4.7/docs/guide/unit-testing
 beforeEach(module('hangman'));
 
+http://stackoverflow.com/a/20886146/3488
+beforeEach(function(){
+  $window = {location: { replace: jasmine.createSpy()} };
+  module(function($provide) {
+    $provide.value('$window', $window);
+  });
+});
 
 beforeEach(function() {
   jasmine.addMatchers({
