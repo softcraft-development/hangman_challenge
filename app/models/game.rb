@@ -21,7 +21,7 @@ class Game < ActiveRecord::Base
   
   def state
     hash = {}
-    hash[:guessed_letters] = guesses.map{|guess| guess.letter.upcase}.sort
+    hash[:guessed_letters] = guesses.map{|guess| guess.letter.upcase}.uniq.sort
 
     correct_letters = []
     hash[:positions] = self.word.name.each_char.map do |letter|
