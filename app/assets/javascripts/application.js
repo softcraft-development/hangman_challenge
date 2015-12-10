@@ -18,12 +18,13 @@
 //= require angular-rails-templates
 //= require angular-route  
 //= require namespace
+//= require_tree ./services
 //= require_tree ./templates
 //= require_tree ./directives  
 //= require_tree ./controllers
 //= require_tree .
 
-Hangman.App = angular.module('hangman', ["ngRoute", "templates", "Directives", "Controllers"]);
+Hangman.App = angular.module('hangman', ["ngRoute", "templates", "Services", "Directives", "Controllers"]);
 Hangman.App.config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/game/:gameId', {
     templateUrl: 'game.html',
