@@ -8,7 +8,7 @@ Hangman.Controllers.controller("Home", function($scope, $http, $window, currentG
     debugger;
   });
   
-  $scope.newGame = function(letter){
+  $scope.$root.newGame = function(letter){
     promise = $http.post("games.json")
     promise.success(function(data) {
       currentGame.setGameData(data);
