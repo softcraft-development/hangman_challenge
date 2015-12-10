@@ -15,6 +15,8 @@
  *= require_self
  */
 
+section#main-content
+
 #site-navigation
   background-color: #3870bd
   a
@@ -24,7 +26,6 @@
 
 #site-footer
   margin-top: 2em
-
 
 #home-view
   .title
@@ -55,19 +56,46 @@
           font-size: 600%
 
 #game-board
+  max-width: 600px
+  border: 1px solid lightgray
+  border-radius: 0.5em
+  margin:
+    left: auto
+    right: auto
+    top: 75px
+  text-align: center
+  padding:
+    top: 1em
+    bottom: 2em
+  #hangman-display
+    border: 1em solid #894022
+    border-radius: 1em
   .word
+    font-size: 200%
+    margin-bottom: 1em
+    white-space: nowrap
     .position
       display: inline-block
       width: 1em
       height: 1em
       margin:
-        left: 0.5em
-        right: 0.5em
+        left: 0.25em
+        right: 0.25em
       &.blank
-        border-bottom: 3px solid black
+        border-bottom: 0.1em solid black
+      &.space
+        @media (max-width:767px)
+          display: block
   .letters
-    list-style-type: none
+    margin:
+      left: 1em
+      right: 1em
     .letter
-      display: inline-block
-      .guessed
-        background-color: red
+      width: 3em
+      margin: 0.25em
+      &.guessed
+        background-color: #894022
+        color: white
+  @media (max-width:350px)
+    #hangman-display
+      border: 1px solid #894022
