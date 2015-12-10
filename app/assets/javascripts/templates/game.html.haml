@@ -8,11 +8,12 @@
   .misses
     %canvas#hangman-display{:width=>"300", :height=>"400", "hangman-display" => ""}
   .word-section
-    %h3 Your Guesses:
+    %h3 Guess This Country:
     .word
       %span.position{"ng-repeat"=>"position in positions track by $index", "ng-class" => "{ 'blank' : position == null,'space' : position == ' ' }"}
         {{ position }}
   .letters
+    %h3 Choose a Letter:
     - Guess::RANGE.each do |letter|
       %button.letter.btn.btn-default{:type=>"button", :name=>"letter_#{letter}", :value => letter, "ng-click"=>"makeGuess('#{letter}')", "ng-class"=>"{ 'guessed' : guesses.indexOf('#{letter}') >= 0 }" } 
         = letter
