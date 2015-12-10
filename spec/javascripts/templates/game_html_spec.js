@@ -126,16 +126,16 @@ describe("templates", function(){
       beforeEach(function(){
         render();
         
-        makeGuess = jasmine.createSpy("makeGuess")
-        $scope.makeGuess = makeGuess
-        buttons = view.find(".letters button")
-        button = $(_.sample(buttons))
-        letter = button.attr("value")
+        makeGuess = jasmine.createSpy("makeGuess");
+        $scope.makeGuess = makeGuess;
+        buttons = view.find(".letters button");
+        button = $(_.sample(buttons));
+        letter = button.attr("value");
         button.click();
       });
       
       it("makes a guess for that letter", function(){
-        expect(makeGuess).toHaveBeenCalledWith(letter)
+        expect(makeGuess).toHaveBeenCalledWith(letter);
       });
     });
   });
