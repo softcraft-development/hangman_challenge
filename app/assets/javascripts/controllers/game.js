@@ -8,7 +8,7 @@ Hangman.Controllers.controller("Game", function($scope, $http, $routeParams, cur
       _.extend($scope, data);
     });
     promise.error(function(){
-      debugger;
+      console.log("An error occurred retrieving the game.");
     });
   }
   
@@ -25,7 +25,7 @@ Hangman.Controllers.controller("Game", function($scope, $http, $routeParams, cur
         _.extend($scope, data.game)
       });
       promise.error(function(){
-        debugger;
+        console.log("An error occurred making a guess.");
       });
     }
   };

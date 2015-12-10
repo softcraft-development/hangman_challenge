@@ -5,7 +5,7 @@ Hangman.Controllers.controller("Home", function($scope, $http, $window, currentG
     $scope.openGames = data
   });
   promise.error(function(){
-    debugger;
+    console.log("An error occurred getting the games list.");
   });
   
   $scope.$root.newGame = function(letter){
@@ -15,7 +15,7 @@ Hangman.Controllers.controller("Home", function($scope, $http, $window, currentG
       $window.location.hash = "/game/" + data.id;
     });
     promise.error(function(){
-      debugger;
+      console.log("An error occurred creating a new game.");
     });
   };
 });
