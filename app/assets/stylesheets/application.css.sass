@@ -25,6 +25,35 @@
 #site-footer
   margin-top: 2em
 
+
+#home-view
+  .title
+    background:
+      image: radial-gradient(transparent 30%, rgba(0, 0, 0, 0.75)), url(image-path("gallows.jpg"))
+      repeat: no-repeat
+      size: cover
+      position: 50% 50%
+    min-height: 400px
+    padding:
+      top: 4em
+      bottom: 4em
+    margin-top: 50px
+    color: white
+    .overlay
+      background-color: rgba(0,0,0,0.67)
+      border-radius: 0.5em
+      margin: 0.5em
+      padding: 1em
+      h1
+        font-size: 400%
+      h2
+        margin-bottom: 1em
+      @media (min-width:768px)
+        margin: 4em
+        padding: 4em
+        h1
+          font-size: 600%
+
 #game-board
   .word
     .position

@@ -1,8 +1,18 @@
 #home-view
-  %h1 Hangman
-  %h2 By Craig Walker
+  .title
+    .overlay
+      %h1 Hangman
+      %h2 By Craig Walker
+      %a.btn.btn-info{:href=>"/#/new"} Start a New Game
   .games-section
-    %h2 Open Games:
-    %ul.games
-      %li{"ng-repeat"=>"game in openGames"}
-        %a{:href=>"#/games/{{game.id}}"} Game {{game.id}}
+    .container-fluid
+      .row
+        .col-md-6.col-md-offset-3
+          %h2 Begin a Game
+          %p
+            Hangman: The classic life-and-death game of letter guessing. But really an exercise in <a href="https://github.com/softcraft-development/hangman_challenge">software development</a>.
+          %p
+            Start a <a href="/#/new">new game</a>, or choose from one of these open games:
+          %ul.games
+            %li{"ng-repeat"=>"game in openGames"}
+              %a{:href=>"#/games/{{game.id}}"} Game {{game.id}}
