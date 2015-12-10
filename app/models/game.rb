@@ -45,6 +45,10 @@ class Game < ActiveRecord::Base
       misses
     end
     
+    if hash[:misses] >= LOSS_MISSES
+      hash[:positions] = self.word.name.each_char
+    end
+    
     hash
   end
 end
