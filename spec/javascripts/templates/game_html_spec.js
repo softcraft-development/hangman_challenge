@@ -2,11 +2,15 @@ describe("templates", function(){
   describe("game.html", function(){
     var template, $rootScope, $scope, $compile, view;
 
-    function render() {
+    var render = function() {
       $compile(view)($scope);
       $rootScope.$digest();
     }
 
+    var findPositionDisplay = function(){
+      return view.find(".word .position").first();
+    };
+    
     beforeEach(inject(function($templateCache, _$compile_, _$rootScope_) {  
       template = $templateCache.get("game.html");
       $compile = _$compile_;
@@ -14,6 +18,63 @@ describe("templates", function(){
       $scope = $rootScope.$new();
       view = angular.element(template);
     }));
+    
+    describe("when the position is null", function(){
+      beforeEach(function(){
+        $scope.positions = [null];
+        render();
+      });
+
+      it("sets the position display to empty", function(){
+        expect(findPositionDisplay()).toBeBlank();
+      });
+      
+      it("adds the blank css class to the position display", function(){
+        expect(findPositionDisplay()).toHaveClass("blank");
+      });
+      
+      it("does not add the space css class", function(){
+        expect(findPositionDisplay()).not.toHaveClass("space");
+      });
+    });
+
+    describe("when the position is non null", function(){
+      beforeEach(function(){
+        $scope.positions = ["A Test Value"];
+        render();
+      });
+
+      it("sets the contents of the position display to the position value", function(){
+        expect(findPositionDisplay()).toHaveText($scope.positions[0]);
+      });
+      
+      it("does not add the blank css class", function(){
+        expect(findPositionDisplay()).not.toHaveClass("blank");
+      });
+      
+      it("does not add the space css class", function(){
+        expect(findPositionDisplay()).not.toHaveClass("space");
+      });
+    });
+    
+    describe("when the position is a space", function(){
+      beforeEach(function(){
+        $scope.positions = [" "];
+        render();
+      });
+
+      it("sets the contents to blank", function(){
+        expect(findPositionDisplay()).toBeBlank()
+      });
+      
+      it("does not add the blank css class", function(){
+        expect(findPositionDisplay()).not.toHaveClass("blank");
+      });
+      
+      it("does adds the space css class", function(){
+        expect(findPositionDisplay()).toHaveClass("space");
+      });
+    });
     
     describe("when letters are guessed", function(){
       beforeEach(function(){
