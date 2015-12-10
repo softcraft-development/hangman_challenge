@@ -19,6 +19,13 @@ describe("templates", function(){
       view = angular.element(template);
     }));
     
+    it("displays the game id", function(){
+      gameId = "An arbitrary value";
+      $scope.id = gameId;
+      render()
+      expect(view.find("h1")).toContainText("Game #" + gameId);
+    });
+    
     describe("when the position is null", function(){
       beforeEach(function(){
         $scope.positions = [null];
