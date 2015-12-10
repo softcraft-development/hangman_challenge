@@ -14,3 +14,5 @@
     - Guess::RANGE.each do |letter|
       %button.letter.btn.btn-default{:type=>"button", :name=>"letter_#{letter}", :value => letter, "ng-click"=>"makeGuess('#{letter}')", "ng-class"=>"{ 'guessed' : guesses.indexOf('#{letter}') >= 0 }" } 
         = letter
+  .controls
+    Done with this game? <a href="/">Return to the game list</a> or <a href="" ng-click="newGame()">start a new one</a>.
