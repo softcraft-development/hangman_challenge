@@ -1,4 +1,4 @@
-Hangman.Controllers.controller("Home", function($scope, $http, $window, currentGame){
+Hangman.Controllers.controller("Home", ["$scope", "$http", "$window", "currentGame", function($scope, $http, $window, currentGame){
   currentGame.reset();
   promise = $http.get('games.json')
   promise.success(function(data) {
@@ -18,4 +18,4 @@ Hangman.Controllers.controller("Home", function($scope, $http, $window, currentG
       console.log("An error occurred creating a new game.");
     });
   };
-});
+}]);

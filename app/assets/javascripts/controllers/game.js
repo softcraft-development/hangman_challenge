@@ -1,4 +1,4 @@
-Hangman.Controllers.controller("Game", function($scope, $http, $routeParams, currentGame){
+Hangman.Controllers.controller("Game", ["$scope", "$http", "$routeParams", "currentGame", function($scope, $http, $routeParams, currentGame){
   if (currentGame.exists()) {
     _.extend($scope, currentGame.getGameData());
   }
@@ -29,4 +29,4 @@ Hangman.Controllers.controller("Game", function($scope, $http, $routeParams, cur
       });
     }
   };
-});
+}]);
