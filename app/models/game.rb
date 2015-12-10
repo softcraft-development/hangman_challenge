@@ -1,8 +1,23 @@
 class Game < ActiveRecord::Base
+  LOSS_MISSES = 6
   belongs_to :word
   has_many :guesses
   validates :word, :presence => true
   validates :status, :inclusion => { :in => [nil, "win", "loss"] } 
+  
+  def determine_status
+    state = self.state
+    if state[:misses] >= LOSS_MISSES
+      self.status = "loss"
+    else
+      if state[:positions].any?{|p| p == nil}
+        self.status = nil
+      else
+        self.status = "win"
+      end
+    end
+    self.status
+  end
   
   def state
     hash = {}
